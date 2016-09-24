@@ -37,7 +37,7 @@ var animalData = [ //All animal data is expandable, add new lines to the 2 dimen
 	 'Just like the Salmon, you are strong, resourceful and noble. You are tireless in your pursuit of what you want and great at overcoming obstacles. You enjoy large groups and crowds and feed off the energy and knowledge of others.']
 ];
 
-var animalObjects = []; //Holds all animal information for scoring
+// var animalObjects = []; //Holds all animal information for scoring
 
 var backgroundImgs = ['img/restaurant.jpg','img/trash.jpg','img/gorge.jpg','img/wedding.jpg','img/ticket.jpg',
 						'img/clothing.png','img/sink.jpg','img/dinner.jpg','img/rex.jpg','img/honeymoon.jpg']
@@ -47,13 +47,23 @@ var questionTitles = ['The restaurant...', 'Trash crash!', 'Do you believe in Ro
 
 var inputButtons = ['$$??', '@#$!!!', 'Rock out?', 'Aloha', 'Come fly with me', 'No shirt ?', 'Fix it!', 'Yum', 'Push it real good', 'To the moon Alice!']
 
-for(var i=0; i<animalData.length; i+=1){ //Pushes all animal data
-	var newAnimal = new Animal(animalData[i][0], animalData[i][1], animalData[i][2], animalData[i][3],
+// DONE: Used .map() on animalData array to eliminate for loop (lines 60-66) and returned animalObjects array
+var animalObjects = animalData.map(function(el,i){
+	return new Animal(animalData[i][0], animalData[i][1], animalData[i][2], animalData[i][3],
 		animalData[i][4], animalData[i][5], animalData[i][6], animalData[i][7], animalData[i][8],
 		animalData[i][9], animalData[i][10], animalData[i][11], animalData[i][12], animalData[i][13],
 		animalData[i][14], animalData[i][15], animalData[i][16], animalData[i][17], animalData[i][18]);
-	animalObjects.push(newAnimal);
-};
+});
+
+console.log("Animal objects", animalObjects);
+
+// for(var i=0; i<animalData.length; i+=1){ //Pushes all animal data
+// 	var newAnimal = new Animal(animalData[i][0], animalData[i][1], animalData[i][2], animalData[i][3],
+// 		animalData[i][4], animalData[i][5], animalData[i][6], animalData[i][7], animalData[i][8],
+// 		animalData[i][9], animalData[i][10], animalData[i][11], animalData[i][12], animalData[i][13],
+// 		animalData[i][14], animalData[i][15], animalData[i][16], animalData[i][17], animalData[i][18]);
+// 	animalObjects.push(newAnimal);
+// };
 
 var questionNumber = 0; //Control variable for ENTIRE SCRIPT!!!!
 
@@ -156,7 +166,7 @@ var questionBuilder = function () { //builds HTML framework for question block
 	var questionTitle = document.getElementById('questionTitle');
 	questionTitle.innerHTML = questionTitles[questionNumber];
 
-	var form = document.getElementById('form');    
+	var form = document.getElementById('form');
 	var question = document.createElement('div');
 	setAttribute(question, {'id':'question', 'background-attachment':'fixed', 'background-position':'center', 'background-repeat':'no-repeat', 'background-size':'cover'});  //Question
 	form.appendChild(question);
@@ -220,15 +230,3 @@ var valueScore = function (event) {  //Scores answers and loads next question or
 };
 
 questionBuilder(); //Initial build of question
-
-
-
-
-
-
-
-
-
-
-
-
